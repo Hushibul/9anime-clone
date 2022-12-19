@@ -56,7 +56,7 @@ const Sidebar = () => {
       </div>
 
       {data.map((e) => (
-        <Link key={e.id} to="/watch" state={{ anime }}>
+        <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
           <div onTouchStart={() => setAnime(e)} onMouseOver={() => setAnime(e)}>
             <RankAnimeCard
               name={e.name}

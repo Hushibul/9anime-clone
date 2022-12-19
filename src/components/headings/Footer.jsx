@@ -1,6 +1,7 @@
 import React from "react";
 import { BsTwitter, BsReddit } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/images/logos/logo.png";
 
@@ -19,7 +20,10 @@ const Footer = () => {
       <div className="mx-2 flex gap-3 my-4">
         <p>Help</p>
         <p className="text-gray-300 mx-2">FAQ</p>
-        <p className="text-gray-300 mx-2">Contact</p>
+        <Link to="/contact">
+          {" "}
+          <p className="text-gray-300 mx-2">Contact</p>
+        </Link>
         <p className="text-gray-300 mx-2">Request</p>
       </div>
       <div className="mx-2 flex gap-3 my-4">

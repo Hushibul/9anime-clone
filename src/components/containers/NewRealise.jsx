@@ -34,7 +34,7 @@ const NewRealise = () => {
           </h3>
 
           {newRelease.map((e) => (
-            <Link key={e.id} to="/watch" state={{ anime }}>
+            <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
               <div
                 onTouchStart={() => setAnime(e)}
                 onMouseOver={() => setAnime(e)}

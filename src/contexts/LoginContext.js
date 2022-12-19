@@ -7,6 +7,7 @@ export const LoginProvider = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [loginData, setLoginData] = useState("");
   // const [registerData, setRegisterData] = useState([]);
+  const [query, setQuery] = useState("");
 
   return (
     <LoginContext.Provider
@@ -15,6 +16,8 @@ export const LoginProvider = (props) => {
         setShowModal,
         loginData,
         setLoginData,
+        query,
+        setQuery,
       }}
     >
       {props.children}

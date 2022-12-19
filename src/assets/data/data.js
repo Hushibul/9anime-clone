@@ -26,6 +26,9 @@ const data = {
       duration: "24 min",
       views: "3,596,625",
       numberOfEpisode: 100,
+      viewStatus: "WATING",
+      episodeNo: 8,
+      viewing: 2,
     },
     {
       id: 2,
@@ -54,6 +57,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 16,
+      viewStatus: "LIVE",
+      episodeNo: 62,
+      viewing: 6,
     },
     {
       id: 3,
@@ -82,6 +88,9 @@ const data = {
       duration: "23 min",
       views: "1,596,625",
       numberOfEpisode: 12,
+      viewStatus: "WATING",
+      episodeNo: 4,
+      viewing: 2,
     },
     {
       id: 4,
@@ -110,6 +119,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 16,
+      viewStatus: "WATING",
+      episodeNo: 8,
+      viewing: 1,
     },
     {
       id: 5,
@@ -138,6 +150,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 12,
+      viewStatus: "LIVE",
+      episodeNo: 10,
+      viewing: 2,
     },
     {
       id: 6,
@@ -157,6 +172,9 @@ const data = {
       duration: "24 min",
       views: "596,625",
       numberOfEpisode: 10,
+      viewStatus: "WATING",
+      episodeNo: 8,
+      viewing: 2,
     },
     {
       id: 7,
@@ -185,6 +203,9 @@ const data = {
       duration: "24 min",
       views: "2,596,625",
       numberOfEpisode: 12,
+      viewStatus: "WATING",
+      episodeNo: 8,
+      viewing: 2,
     },
     {
       id: 8,
@@ -205,6 +226,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 16,
+      viewStatus: "WATING",
+      episodeNo: 6,
+      viewing: 3,
     },
     {
       id: 9,
@@ -231,6 +255,9 @@ const data = {
       duration: "23 min",
       views: "1,596,625",
       numberOfEpisode: 24,
+      viewStatus: "LIVE",
+      episodeNo: 23,
+      viewing: 4,
     },
     {
       id: 10,
@@ -259,6 +286,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 16,
+      viewStatus: "WATING",
+      episodeNo: 16,
+      viewing: 1,
     },
     {
       id: 11,
@@ -287,6 +317,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 16,
+      viewStatus: "WATING",
+      episodeNo: 8,
+      viewing: 2,
     },
     {
       id: 12,
@@ -315,6 +348,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 24,
+      viewStatus: "WATING",
+      episodeNo: 4,
+      viewing: 2,
     },
     {
       id: 13,
@@ -343,6 +379,9 @@ const data = {
       duration: "24 min",
       views: "13,596,625",
       numberOfEpisode: 26,
+      viewStatus: "WATING",
+      episodeNo: 1,
+      viewing: 2,
     },
     {
       id: 14,
@@ -371,6 +410,9 @@ const data = {
       duration: "24 min",
       views: "23,596,625",
       numberOfEpisode: 120,
+      viewStatus: "WATING",
+      episodeNo: 8,
+      viewing: 2,
     },
     {
       id: 15,
@@ -399,6 +441,9 @@ const data = {
       duration: "24 min",
       views: "3,596,625",
       numberOfEpisode: 25,
+      viewStatus: "LIVE",
+      episodeNo: 16,
+      viewing: 7,
     },
   ],
   suggested: [

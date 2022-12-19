@@ -5,11 +5,11 @@ const Contact = () => {
   return (
     <main className="mx-2 flex flex-col my-2 gap-4">
       <div className="flex gap-2">
-        <Link>
+        <Link to="/">
           <p className="text-gray-600">Home</p>
         </Link>
         <p className="text-gray-600">/</p>
-        <Link>
+        <Link to="contact">
           <p>Contact</p>
         </Link>
       </div>

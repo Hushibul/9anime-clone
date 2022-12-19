@@ -10,12 +10,12 @@ import logo from "../../assets/images/logos/logo.png";
 import Modal from "../popper/Modal";
 import { LoginContext } from "../../contexts/LoginContext";
 import { Link } from "react-router-dom";
-import { menu } from "../../assets/data/menu";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { showModal, setShowModal } = useContext(LoginContext);
   const { loginData, setLoginData } = useContext(LoginContext);
+  const { query, setQuery } = useContext(LoginContext);
 
   return (
     <nav className="flex bg-secondary-color py-2 items-center justify-between z-10">
@@ -43,29 +43,31 @@ const Navbar = () => {
           <HiSearch className=" text-gray-300 text-2xl hover:text-white" />
           <input
             type="text"
-            className="w-[500px] bg-primary-color px-2 py-2  placeholder:text-gray-600 placeholder:text-xs"
+            className="text-gray-400 w-[500px] bg-primary-color px-2 py-2 placeholder:text-gray-600 placeholder:text-xs"
             placeholder="Search anime..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
 
         {/* sub-list  */}
         <div name="heading" className="hidden md:flex">
-          <h5 className="text-sm text-gray-300 flex items-center px-2">
-            Watch2gather
+          <h5 className="text-sm text-gray-300 flex items-center px-2 hover:text-white">
+            <Link to="watch2gather">Watch2gather</Link>
           </h5>
-          <h5 className="text-sm text-gray-300 flex items-center px-2">
+          <h5 className="text-sm text-gray-300 flex items-center px-2 hover:text-white">
             <FaRandom />
             Random
           </h5>
-          <h5 className="text-sm text-gray-300 flex items-center px-2">
+          <h5 className="text-sm text-gray-300 flex items-center px-2 hover:text-white">
             <RiHeartAddFill />
-            Donate
+            <Link to="/donate">Donate</Link>
           </h5>
           <div className="flex rounded-md px-2 items-center">
-            <h5 className="text-base text-secondary-color bg-gray-300 px-1">
+            <h5 className="text-base text-secondary-color bg-gray-300 px-1 cursor-pointer">
               EN
             </h5>
-            <h5 className="text-base text-gray-300 bg-secondary-color px-1">
+            <h5 className="text-base text-gray-300 bg-secondary-color px-1 cursor-pointer hover:bg-purple-600">
               JP
             </h5>
           </div>
@@ -106,14 +108,39 @@ const Navbar = () => {
         }
       >
         <ul className=" flex flex-col text-gray-400 text-base">
-          {menu.map((e, i) => (
-            <li
-              key={i}
-              className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color"
-            >
-              {e}
-            </li>
-          ))}
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            <Link to="/"> Home</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            Genre
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            <Link to="/types"> Types</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            <Link to="/newest"> Newest</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            <Link to="/updated"> Updated</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            <Link to="/ongoing">Ongoing</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            <Link to="/added"> Added</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+            Request
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color md:hidden">
+            <Link to="/watch2gather"> Watch2gather</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color md:hidden">
+            <Link to="/random">Random</Link>
+          </li>
+          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color md:hidden">
+            <Link to="/donate">Donate</Link>
+          </li>
         </ul>
       </div>
     </nav>
