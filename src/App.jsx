@@ -10,6 +10,10 @@ import Footer from "./components/headings/Footer";
 import Watch2gather from "./pages/Watch2gather";
 import DonatePage from "./pages/DonatePage";
 import NewestPage from "./pages/NewestPage";
+import AddedPage from "./pages/AddedPage";
+import UpdatedPage from "./pages/UpdatedPage";
+import GenrePage from "./pages/GenrePage";
+import TypePage from "./pages/TypePage";
 
 const App = () => {
   return (
@@ -25,8 +29,10 @@ const App = () => {
             <Route path="/watch2gather" element={<Watch2gather />} />
             <Route path="/donate" element={<DonatePage />} />
             <Route path="/newest" element={<NewestPage />} />
-            <Route path="/genre" element={<NewestPage />} />
-            <Route path="/type" element={<NewestPage />} />
+            <Route path="/genre" element={<GenrePage />} />
+            <Route path="/types" element={<TypePage />} />
+            <Route path="/added" element={<AddedPage />} />
+            <Route path="/updated" element={<UpdatedPage />} />
           </Routes>
         </AnimeProvider>
         <Footer />

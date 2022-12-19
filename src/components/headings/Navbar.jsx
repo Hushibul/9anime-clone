@@ -10,10 +10,12 @@ import logo from "../../assets/images/logos/logo.png";
 import Modal from "../popper/Modal";
 import { LoginContext } from "../../contexts/LoginContext";
 import { Link } from "react-router-dom";
+import RequestModal from "../popper/RequestModal";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { showModal, setShowModal } = useContext(LoginContext);
+  const { showRequestModal, setShowRequestModal } = useContext(LoginContext);
   const { loginData, setLoginData } = useContext(LoginContext);
   const { query, setQuery } = useContext(LoginContext);
 
@@ -112,7 +114,7 @@ const Navbar = () => {
             <Link to="/"> Home</Link>
           </li>
           <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
-            Genre
+            <Link to="/genre">Genre</Link>
           </li>
           <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
             <Link to="/types"> Types</Link>
@@ -129,8 +131,15 @@ const Navbar = () => {
           <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
             <Link to="/added"> Added</Link>
           </li>
-          <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color">
+          <li
+            onClick={() => showRequestModal(true)}
+            className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color cursor-pointer"
+          >
             Request
+            <RequestModal
+              showRequestModal={showRequestModal}
+              setShowRequestModal={setShowRequestModal}
+            />
           </li>
           <li className="py-2 w-full px-5 hover:text-gray-200 hover:bg-primary-color md:hidden">
             <Link to="/watch2gather"> Watch2gather</Link>

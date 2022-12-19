@@ -1,31 +1,22 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import LiveCard from "../components/cards/LiveCard";
-import { AnimeContext } from "../contexts/AnimeContext";
+import AnimeCard from "../components/cards/AnimeCard";
 import { LoginContext } from "../contexts/LoginContext";
+import { AnimeContext } from "../contexts/AnimeContext";
 
-const Watch2gather = () => {
+const UpdatedPage = () => {
   const [anime, setAnime] = useState([]);
 
   const { animeData } = useContext(AnimeContext);
-  const { recentlyUpdate } = animeData;
+  const { newRelease } = animeData;
   const { query } = useContext(LoginContext);
 
   return (
     <section className="mx-2 ">
-      <div className="flex gap-2">
-        <Link to="/">
-          <p className="text-gray-600">Home</p>
-        </Link>
-        <p className="text-gray-600">/</p>
-        <Link to="watch2gather">
-          <p>Watch2Gather</p>
-        </Link>
-      </div>
-      <h2>Browse</h2>
+      <h2>Newest</h2>
 
-      <main className="grid gap-2 grid-cols-1 md:grid-cols-4">
-        {recentlyUpdate
+      <main className="grid gap-2 grid-cols-1 md:grid-cols-6">
+        {newRelease
           .filter((item) => item.name.toLowerCase().includes(query))
           .map((e) => (
             <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
@@ -33,26 +24,19 @@ const Watch2gather = () => {
                 onTouchStart={() => setAnime(e)}
                 onMouseOver={() => setAnime(e)}
               >
-                <LiveCard
+                <AnimeCard
                   key={e.id}
                   name={e.name}
                   image={e.image}
-                  viewStatus={e.viewStatus}
-                  episodeNo={e.episodeNo}
-                  viewing={e.viewing}
+                  type={e.type}
+                  numOfEpisode={e.numberOfEpisode}
                 />
               </div>
             </Link>
           ))}
-
-        {/* <LiveCard />
-        <LiveCard />
-        <LiveCard />
-        <LiveCard />
-        <LiveCard /> */}
       </main>
     </section>
   );
 };
 
-export default Watch2gather;
+export default UpdatedPage;
