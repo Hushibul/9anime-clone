@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import SliderComponent from "../components/containers/Slider";
+import SliderComponent from '../components/containers/Slider';
 
-import Sidebar from "../components/sidebars/Sidebar";
-import MainGrid from "../components/containers/MainGrid";
-import NewRealise from "../components/containers/NewRealise";
-import Schedule from "../components/containers/Schedule";
+import MainGrid from '../components/containers/MainGrid';
+import NewRealise from '../components/containers/NewRealise';
+import Schedule from '../components/containers/Schedule';
+import Sidebar from '../components/sidebars/Sidebar';
 
 const Home = () => {
   return (
-    <div className="w-full mx-auto">
+    <div className='container'>
       {/* Slider  */}
       <SliderComponent />
 
-      <section className="flex flex-col gap-4 w-full md:flex-row">
+      <section className='flex flex-col gap-4 w-full md:flex-row'>
         {/* Main Section  */}
-        <main className="w-full flex flex-col md:w-9/12">
+        <main className='w-full flex flex-col md:w-9/12'>
           <MainGrid />
 
           <NewRealise />
@@ -24,7 +24,7 @@ const Home = () => {
         </main>
 
         {/* Sidebar */}
-        <aside className="md:w-3/12 mt-3">
+        <aside className='md:w-3/12 mt-3'>
           <Sidebar />
         </aside>
       </section>
