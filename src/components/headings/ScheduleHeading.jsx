@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const ScheduleHeading = () => {
   const weekArray = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
   const [time, setTime] = useState('');
 
-  function checkTime(i) {
-    if (i < 10) {
-      i = '0' + i;
-    }
-    return i;
-  }
+  const checkTime = useCallback((i) => {
+    return i < 10 ? '0' + i : i;
+  }, []);
 
-  function startTime() {
+  const startTime = useCallback(() => {
     const today = new Date();
     let h = today.getHours();
     let m = today.getMinutes();
@@ -19,12 +16,12 @@ const ScheduleHeading = () => {
     m = checkTime(m);
     s = checkTime(s);
     setTime(h + ':' + m + ':' + s);
-    setTimeout(startTime, 1000);
-  }
+  }, [checkTime]);
 
   useEffect(() => {
-    startTime();
-  }, [time]);
+    const timer = setTimeout(startTime, 1000);
+    return () => clearTimeout(timer);
+  }, [startTime]);
 
   return (
     <div className='flex flex-col justify-center items-center bg-neutral-900 rounded-md'>
@@ -35,7 +32,7 @@ const ScheduleHeading = () => {
         Now:{' '}
         {`${new Date().getDate()}/${
           new Date().getMonth() + 1
-        }/${new Date().getFullYear()} ${time}`}{' '}
+        }/${new Date().getFullYear()} ${time}`}
       </h6>
       <div className='flex items-center justify-between w-full px-4'>
         {weekArray.map((item, index) => (
