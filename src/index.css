@@ -10,6 +10,7 @@
   --bg-purple: #5a2e98;
   --bg-yellow: #ffc107;
   --text-gray: #6c757d;
+  --bg-rose: #e11d48;
 }
 
 @layer base {
@@ -57,9 +58,20 @@
   }
 
   .text-gradiant {
-    background-image: linear-gradient(90deg, #2196f3, #ee0979);
-    background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px var(--text-gray);
+  }
+  .text-gradiant-one {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px var(--bg-purple);
+  }
+  .text-gradiant-two {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px var(--bg-rose);
+  }
+  .text-gradiant-three {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px var(--bg-yellow);
   }
 
   @media (min-width: 768px) {
@@ -67,11 +79,23 @@
       @apply text-[40px];
     }
   }
-}
 
-/* Swiper Styling  */
-.swiper-button-next,
-.swiper-rtl .swiper-button-prev {
-  display: none;
+  .mySwiper > .swiper-button-next,
+  .mySwiper > .swiper-button-prev {
+    @apply hidden;
+  }
+
+  .mySwiper > .swiper-pagination-bullets.swiper-pagination-horizontal {
+    left: 10px;
+    bottom: 20px;
+    width: auto;
+  }
+
+  .mySwiper > .swiper-pagination-bullets > .swiper-pagination-bullet {
+    @apply bg-gray-300;
+  }
+
+  .mySwiper > .swiper-pagination-bullets > .swiper-pagination-bullet-active {
+    background-color: var(--bg-purple);
+  }
 }
-/* #343a40 */

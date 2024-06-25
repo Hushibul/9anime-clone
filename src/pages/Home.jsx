@@ -13,9 +13,9 @@ const Home = () => {
       {/* Slider  */}
       <SliderComponent />
 
-      <section className='flex flex-col gap-4 w-full md:flex-row'>
+      <section className='flex flex-col gap-4 max-w-full lg:flex-row'>
         {/* Main Section  */}
-        <main className='w-full flex flex-col md:w-9/12'>
+        <main className='max-w-full flex flex-col flex-1'>
           <MainGrid />
 
           <NewRealise />
@@ -24,7 +24,7 @@ const Home = () => {
         </main>
 
         {/* Sidebar */}
-        <aside className='md:w-3/12 mt-3'>
+        <aside className='mt-3 basis-[30%]'>
           <Sidebar />
         </aside>
       </section>

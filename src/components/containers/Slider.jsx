@@ -1,17 +1,16 @@
-import React from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Navigation, Pagination } from 'swiper';
 
-import SliderCard from "../cards/SliderCard";
-import swiperData from "../../assets/data/swiperdata";
+import swiperData from '../../assets/data/swiperdata';
+import SliderCard from '../cards/SliderCard';
 
 export default function SliderComponent() {
   return (
@@ -28,7 +27,7 @@ export default function SliderComponent() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className='mySwiper'
       >
         {swiperData.map((e, i) => {
           return (
