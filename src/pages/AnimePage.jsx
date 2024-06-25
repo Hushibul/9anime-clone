@@ -11,7 +11,7 @@ const AnimePage = () => {
   const location = useLocation();
   // console.log("location: ", location);
   const anime = location.state?.anime;
-  // console.log("data: ", anime);
+  console.log('data: ', anime);
 
   return (
     <div className='container w-full mx-auto'>
@@ -19,7 +19,7 @@ const AnimePage = () => {
         {/* Main Section  */}
         <main className='w-full flex flex-col md:w-9/12'>
           <Video />
-          <EpisodeList />
+          <EpisodeList episodes={anime?.numberOfEpisode} />
           <AnimeContainer anime={anime} />
           <Comments />
           <SuggestedGrid />

@@ -21,7 +21,7 @@ const ScheduleHeading = () => {
   useEffect(() => {
     const timer = setTimeout(startTime, 1000);
     return () => clearTimeout(timer);
-  }, [startTime]);
+  }, [time, startTime]);
 
   return (
     <div className='flex flex-col justify-center items-center bg-neutral-900 rounded-md'>

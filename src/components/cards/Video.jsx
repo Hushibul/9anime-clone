@@ -46,7 +46,7 @@ const Video = () => {
       </section>
       <section className='px-2 py-2 flex bg-black items-center gap-2'>
         <div className='flex gap-2 items-center mr-6'>
-          <p className='text-[8px] bg-gray-400 font-bold text-black rounded-sm'>
+          <p className='text-[8px] bg-gray-400 p-1 font-bold text-black rounded-sm'>
             CC
           </p>
           <p className='text-gray-400'>Sub</p>

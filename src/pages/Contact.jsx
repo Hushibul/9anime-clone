@@ -1,15 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   return (
-    <main className="mx-2 flex flex-col my-2 gap-4">
-      <div className="flex gap-2">
-        <Link to="/">
-          <p className="text-gray-600">Home</p>
+    <main className='mx-2 flex flex-col my-2 gap-4'>
+      <div className='flex gap-2'>
+        <Link to='/'>
+          <p className='text-gray-600'>Home</p>
         </Link>
-        <p className="text-gray-600">/</p>
-        <Link to="contact">
+        <p className='text-gray-600'>/</p>
+        <Link to='contact'>
           <p>Contact</p>
         </Link>
       </div>
