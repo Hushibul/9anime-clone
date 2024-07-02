@@ -1,15 +1,27 @@
-import React, { Fragment } from 'react';
+import { useRef, useState } from 'react';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
+import VideoPlayer from '../player/VideoPlayer';
 
 const Video = () => {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   return (
-    <Fragment className='mx-2 my-6 flex flex-col'>
-      <video id='video'>
-        <source
-          src='https://media.geeksforgeeks.org/wp-content/uploads/20231020155223/Full-Stack-Development-_-LIVE-Classes-_-GeeksforGeeks.mp4'
-          type='video/mp4'
-        />
-      </video>
+    <div className='mx-2 my-6 flex flex-col'>
+      <VideoPlayer
+        src={
+          'https://media.geeksforgeeks.org/wp-content/uploads/20231020155223/Full-Stack-Development-_-LIVE-Classes-_-GeeksforGeeks.mp4'
+        }
+        type={'video/mp4'}
+        ref={videoRef}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        currentTime={currentTime}
+        setCurrentTime={setCurrentTime}
+        duration={duration}
+        setDuration={setDuration}
+      />
       <section className='px-2 flex py-1 bg-black justify-between'>
         <div className='flex'>
           <p className='text-gray-400 hover:text-white cursor-pointer text-[10px] px-1'>
@@ -72,7 +84,7 @@ const Video = () => {
           <p>Mp4Upload</p>
         </div>
       </section>
-    </Fragment>
+    </div>
   );
 };
 

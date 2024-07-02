@@ -120,4 +120,39 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--bg-rose);
   }
+
+  .video-player-range {
+    width: calc(100% - 16px);
+  }
+
+  .video-player-range > input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #fff;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .video-player-range > input[type='range']::-webkit-slider-runnable-track {
+    background: #fff;
+    height: 4px;
+  }
+
+  /******** Firefox ********/
+  .video-player-range > input[type='range']::-moz-range-track {
+    background: #fff;
+    height: 4px;
+  }
+
+  .video-player-range > input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: var(--bg-purple);
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    margin-top: -6px;
+  }
 }
