@@ -9,7 +9,6 @@ import SuggestedGrid from '../components/containers/SuggestedGrid';
 import Sidebar from '../components/sidebars/Sidebar';
 const AnimePage = () => {
   const location = useLocation();
-  // console.log("location: ", location);
   const anime = location.state?.anime;
   console.log('data: ', anime);
 
@@ -17,7 +16,7 @@ const AnimePage = () => {
     <div className='container w-full mx-auto'>
       <section className='flex flex-col gap-4 w-full md:flex-row'>
         {/* Main Section  */}
-        <main className='w-full flex flex-col md:w-9/12'>
+        <main className='max-w-full flex flex-col flex-1'>
           <Video />
           <EpisodeList episodes={anime?.numberOfEpisode} />
           <AnimeContainer anime={anime} />
@@ -26,7 +25,7 @@ const AnimePage = () => {
         </main>
 
         {/* Sidebar */}
-        <aside className='md:w-3/12 mt-3'>
+        <aside className='mt-3 basis-[30%]'>
           <Sidebar />
         </aside>
       </section>

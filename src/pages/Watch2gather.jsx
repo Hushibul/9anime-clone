@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import LiveCard from "../components/cards/LiveCard";
-import { AnimeContext } from "../contexts/AnimeContext";
-import { LoginContext } from "../contexts/LoginContext";
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import LiveCard from '../components/cards/LiveCard';
+import { AnimeContext } from '../contexts/AnimeContext';
+import { LoginContext } from '../contexts/LoginContext';
 
 const Watch2gather = () => {
   const [anime, setAnime] = useState([]);
@@ -12,19 +12,19 @@ const Watch2gather = () => {
   const { query } = useContext(LoginContext);
 
   return (
-    <section className="mx-2 ">
-      <div className="flex gap-2">
-        <Link to="/">
-          <p className="text-gray-600">Home</p>
+    <section className='container'>
+      <div className='flex gap-2 mt-4'>
+        <Link to='/'>
+          <p className='text-gray-600'>Home</p>
         </Link>
-        <p className="text-gray-600">/</p>
-        <Link to="watch2gather">
+        <p className='text-gray-600'>/</p>
+        <Link to='watch2gather'>
           <p>Watch2Gather</p>
         </Link>
       </div>
-      <h2>Browse</h2>
+      <h2 className='mt-2'>Browse</h2>
 
-      <main className="grid gap-2 grid-cols-1 md:grid-cols-4">
+      <main className='grid gap-2 grid-cols-1 md:grid-cols-4 mt-4'>
         {recentlyUpdate
           .filter((item) => item.name.toLowerCase().includes(query))
           .map((e) => (

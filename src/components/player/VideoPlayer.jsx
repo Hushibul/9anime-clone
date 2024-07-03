@@ -107,6 +107,18 @@ const VideoPlayer = forwardRef(
 
     return (
       <div className='relative'>
+        {/* <div
+          className={`w-full h-full absolute top-0 left-0 bg-black z-50 ${
+            isPlaying ? 'hidden' : 'block'
+          }`}
+        >
+          <button
+            onClick={handlePlay}
+            className='bg-transparent flex w-full h-full items-center justify-center'
+          >
+            {!isPlaying && <FaPlay size={40} />}
+          </button>
+        </div> */}
         <video id='video' ref={ref}>
           <source src={src} type={type} />
         </video>

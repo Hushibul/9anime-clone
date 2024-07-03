@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import AnimeCard from "../components/cards/AnimeCard";
-import { LoginContext } from "../contexts/LoginContext";
-import { AnimeContext } from "../contexts/AnimeContext";
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import AnimeCard from '../components/cards/AnimeCard';
+import { AnimeContext } from '../contexts/AnimeContext';
+import { LoginContext } from '../contexts/LoginContext';
 
 const UpdatedPage = () => {
   const [anime, setAnime] = useState([]);
@@ -12,10 +12,10 @@ const UpdatedPage = () => {
   const { query } = useContext(LoginContext);
 
   return (
-    <section className="mx-2 ">
-      <h2>Newest</h2>
+    <section className='container'>
+      <h2 className='mt-4'>Newest</h2>
 
-      <main className="grid gap-2 grid-cols-1 md:grid-cols-6">
+      <main className='grid gap-2 grid-cols-1 md:grid-cols-6'>
         {newRelease
           .filter((item) => item.name.toLowerCase().includes(query))
           .map((e) => (

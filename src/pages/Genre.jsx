@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import AnimeCard from "../components/cards/AnimeCard";
-import { AnimeContext } from "../contexts/AnimeContext";
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import AnimeCard from '../components/cards/AnimeCard';
+import { AnimeContext } from '../contexts/AnimeContext';
 
 const GenrePage = () => {
   const [anime, setAnime] = useState([]);
@@ -9,12 +9,12 @@ const GenrePage = () => {
   const { animeData } = useContext(AnimeContext);
   const { recentlyUpdate } = animeData;
   return (
-    <section className="mx-2 ">
+    <section className='mx-2'>
       <h2>Genre</h2>
 
-      <main className="grid gap-2 grid-cols-1 md:grid-cols-4">
+      <main className='grid gap-2 grid-cols-1 md:grid-cols-4'>
         {recentlyUpdate.map((e) => (
-          <Link key={e.id} to="/watch" state={{ anime }}>
+          <Link key={e.id} to='/watch' state={{ anime }}>
             <div
               onTouchStart={() => setAnime(e)}
               onMouseOver={() => setAnime(e)}

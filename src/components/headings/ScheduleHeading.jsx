@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const ScheduleHeading = () => {
-  const weekArray = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+  // const weekArray = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
   const [time, setTime] = useState('');
 
   const checkTime = useCallback((i) => {
@@ -34,7 +34,7 @@ const ScheduleHeading = () => {
           new Date().getMonth() + 1
         }/${new Date().getFullYear()} ${time}`}
       </h6>
-      <div className='flex items-center justify-between w-full px-4'>
+      {/* <div className='flex items-center justify-between w-full px-4'>
         {weekArray.map((item, index) => (
           <h1
             key={index}
@@ -43,7 +43,7 @@ const ScheduleHeading = () => {
             {item}
           </h1>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,9 +1,8 @@
-import React from "react";
-import DonateModal from "../components/popper/DonateModal";
+import DonateModal from '../components/popper/DonateModal';
 
 const DonatePage = () => {
   return (
-    <div>
+    <div className='container'>
       <DonateModal />
     </div>
   );
