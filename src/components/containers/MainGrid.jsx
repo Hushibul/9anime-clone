@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useState, useEffect } from 'react';
 // import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import { Link } from 'react-router-dom';
@@ -8,12 +8,17 @@ import AnimeCard from '../cards/AnimeCard';
 import AdMessage from '../headings/AdMessage';
 
 const MainGrid = () => {
-  const { animeData } = useContext(AnimeContext);
+  const { animeData, loading } = useContext(AnimeContext);
   const { query } = useContext(LoginContext);
-  const { recentlyUpdate, newRelease, newAdded, justCompleted } = animeData;
 
   const [anime, setAnime] = useState([]);
-  const [animeArray, setAnimeArray] = useState(recentlyUpdate);
+  const [animeArray, setAnimeArray] = useState([]);
+
+  useEffect(() => {
+    if (animeData) {
+      setAnimeArray(animeData.recentlyUpdate);
+    }
+  }, [animeData]);
 
   // Randomize Array
   function shuffleArray(array) {
@@ -24,6 +29,16 @@ const MainGrid = () => {
     }
     return newArray;
   }
+
+  if (loading) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
+  }
+
+  if (!animeData) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No anime data available.</h5>;
+  }
+
+  const { recentlyUpdate, newRelease, newAdded, justCompleted } = animeData;
 
   return (
     <Fragment>
@@ -45,7 +60,7 @@ const MainGrid = () => {
             }`}
             onClick={() => setAnimeArray(newRelease)}
           >
-            Sub
+            New Release
           </li>
           <li
             className={`cursor-pointer py-1 ${
@@ -53,15 +68,7 @@ const MainGrid = () => {
             }`}
             onClick={() => setAnimeArray(newAdded)}
           >
-            Dub
-          </li>
-          <li
-            onClick={() => setAnimeArray([])}
-            className={`cursor-pointer py-1 ${
-              animeArray?.length <= 0 && 'text-white'
-            }`}
-          >
-            Chinese
+            New Added
           </li>
           <li
             className={`cursor-pointer py-1 ${
@@ -69,7 +76,7 @@ const MainGrid = () => {
             }`}
             onClick={() => setAnimeArray(justCompleted)}
           >
-            Trending
+            Just Completed
           </li>
           <li
             onClick={() =>
@@ -90,7 +97,7 @@ const MainGrid = () => {
           {animeArray
             .filter((item) => item.name.toLowerCase().includes(query))
             .map((e) => (
-              <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
+              <Link key={e.id} to={`/watch/${e.id}`} state={{ anime }}>
                 <div
                   onTouchStart={() => setAnime(e)}
                   onMouseOver={() => setAnime(e)}

@@ -7,9 +7,18 @@ import { LoginContext } from '../contexts/LoginContext';
 const UpdatedPage = () => {
   const [anime, setAnime] = useState([]);
 
-  const { animeData } = useContext(AnimeContext);
-  const { newRelease } = animeData;
+  const { animeData, loading } = useContext(AnimeContext);
   const { query } = useContext(LoginContext);
+
+  if (loading) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
+  }
+
+  if (!animeData || !animeData.newRelease || animeData.newRelease.length === 0) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No anime available.</h5>;
+  }
+
+  const { newRelease } = animeData;
 
   return (
     <section className='container'>

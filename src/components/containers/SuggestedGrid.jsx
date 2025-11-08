@@ -7,7 +7,16 @@ import AnimeCard from "../cards/AnimeCard";
 const SuggestedGrid = () => {
   const [anime, setAnime] = useState([]);
 
-  const { animeData } = useContext(AnimeContext);
+  const { animeData, loading } = useContext(AnimeContext);
+
+  if (loading) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
+  }
+
+  if (!animeData || !animeData.suggested || animeData.suggested.length === 0) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No suggested anime available.</h5>;
+  }
+
   const { suggested } = animeData;
   return (
     <Fragment>
@@ -28,8 +37,6 @@ const SuggestedGrid = () => {
                 key={e.id}
                 name={e.name}
                 image={e.image}
-                type={e.type}
-                numOfEpisode={e.numberOfEpisode}
               />
             </div>
           </Link>

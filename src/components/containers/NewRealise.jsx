@@ -7,10 +7,17 @@ import HAnimeCard from '../cards/HAnimeCard';
 const NewRealise = () => {
   const [anime, setAnime] = useState([]);
 
-  const { animeData } = useContext(AnimeContext);
-  const { newRelease } = animeData;
-  const { newAdded } = animeData;
-  const { justCompleted } = animeData;
+  const { animeData, loading } = useContext(AnimeContext);
+
+  if (loading) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
+  }
+
+  if (!animeData) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No anime data available.</h5>;
+  }
+
+  const { newRelease, newAdded, justCompleted } = animeData;
   return (
     <Fragment>
       <section className='hidden md:flex rounded mx-2 mb-5'>
@@ -31,7 +38,7 @@ const NewRealise = () => {
             <HiArrowNarrowRight className='hidden text-white mx-2 text-2xl md:block' />{' '}
           </h3>
 
-          {newRelease.map((e) => (
+          {newRelease.length > 0 ? newRelease.map((e) => (
             <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
               <div
                 onTouchStart={() => setAnime(e)}
@@ -47,14 +54,14 @@ const NewRealise = () => {
                 />
               </div>
             </Link>
-          ))}
+          )) : <p>No new releases</p>}
         </section>
         <section className='hidden md:flex flex-col mx-2'>
           <h3 className='text-lg text-gray-400 flex'>
             NEW ADDED
             <HiArrowNarrowRight className='hidden text-white mx-2 text-2xl md:block' />{' '}
           </h3>
-          {newAdded.map((e) => (
+          {newAdded.length > 0 ? newAdded.map((e) => (
             <Link key={e.id} to='/watch' state={{ anime }}>
               <div
                 onTouchStart={() => setAnime(e)}
@@ -70,14 +77,14 @@ const NewRealise = () => {
                 />
               </div>
             </Link>
-          ))}
+          )) : <p>No new added</p>}
         </section>
         <section className='hidden md:flex flex-col mx-2'>
           <h3 className='text-lg text-gray-400 flex'>
             JUST COMPLETED
             <HiArrowNarrowRight className='hidden text-white mx-2 text-2xl md:block' />
           </h3>
-          {justCompleted.map((e) => (
+          {justCompleted.length > 0 ? justCompleted.map((e) => (
             <Link key={e.id} to='/watch' state={{ anime }}>
               <div
                 onTouchStart={() => setAnime(e)}
@@ -93,7 +100,7 @@ const NewRealise = () => {
                 />
               </div>
             </Link>
-          ))}
+          )) : <p>No animes just completed</p>}
         </section>
       </div>
     </Fragment>

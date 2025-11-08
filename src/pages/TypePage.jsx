@@ -7,9 +7,18 @@ import { LoginContext } from '../contexts/LoginContext';
 const TypePage = () => {
   const [anime, setAnime] = useState([]);
 
-  const { animeData } = useContext(AnimeContext);
-  const { recentlyUpdate } = animeData;
+  const { animeData, loading } = useContext(AnimeContext);
   const { query } = useContext(LoginContext);
+
+  if (loading) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
+  }
+
+  if (!animeData || !animeData.recentlyUpdate || animeData.recentlyUpdate.length === 0) {
+    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No anime available.</h5>;
+  }
+
+  const { recentlyUpdate } = animeData;
 
   return (
     <section className='container'>
