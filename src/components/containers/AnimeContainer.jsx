@@ -2,15 +2,17 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 const AnimeContainer = ({ anime }) => {
+  if (!anime) return null;
+
   return (
     <Fragment>
       <div className='mx-2 flex gap-3 my-6'>
         <section className='w-1/12 rounded overflow-hidden'>
-          <img src={anime.image} alt={anime.id} />
+          <img src={anime.image} alt={anime.name} />
         </section>
         <section className='flex flex-col gap-2 w-11/12'>
           <h2>{anime.name}</h2>
-          <p className='text-xs'>{anime.name}</p>
+          <p className='text-xs'>{anime.japaneseName}</p>
           <p className='text-xs'>{anime.description}</p>
 
           <div className='flex flex-col gap-1'>
@@ -40,15 +42,21 @@ const AnimeContainer = ({ anime }) => {
             </p>
             <p className='text-xs'>
               Status:{' '}
-              <span className='text-gray-300 font-medium'>Releasing</span>
+              <span className='text-gray-300 font-medium'>{anime.status}</span>
             </p>
             <p className='text-xs'>
               Genre:{' '}
-              {anime.genre.map((e, i) => (
-                <Link key={i} className='text-purple-600 font-medium' to=''>
-                  {e},
-                </Link>
-              ))}
+              {anime.genre?.length > 0
+                ? anime.genre.map((name) => (
+                    <Link
+                      key={name}
+                      className='text-purple-600 font-medium mr-1'
+                      to='/genre'
+                    >
+                      {name}
+                    </Link>
+                  ))
+                : 'Unknown'}
             </p>
             <p className='text-xs'>
               Country:{' '}

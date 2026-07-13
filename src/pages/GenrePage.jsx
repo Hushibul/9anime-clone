@@ -1,50 +1,42 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import AnimeCard from '../components/cards/AnimeCard';
-import { AnimeContext } from '../contexts/AnimeContext';
-import { LoginContext } from '../contexts/LoginContext';
+import React, { useCallback, useState } from 'react';
+import { getAnimeByGenre, getGenres } from '../api/anilist';
+import AnimeGrid from '../components/containers/AnimeGrid';
+import { useAsync } from '../hooks/useAnime';
 
 const GenrePage = () => {
-  const [anime, setAnime] = useState([]);
+  // AniList filters by genre name, not by id.
+  const [genre, setGenre] = useState('Action');
 
-  const { animeData, loading } = useContext(AnimeContext);
-  const { query } = useContext(LoginContext);
+  const fetchGenres = useCallback(() => getGenres(), []);
+  const fetchByGenre = useCallback(() => getAnimeByGenre(genre), [genre]);
 
-  if (loading) {
-    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
-  }
+  const { data: genres } = useAsync(fetchGenres, []);
+  const { data: anime, loading, error } = useAsync(fetchByGenre, [genre]);
 
-  if (!animeData || !animeData.recentlyUpdate || animeData.recentlyUpdate.length === 0) {
-    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No anime available.</h5>;
-  }
-
-  const { recentlyUpdate } = animeData;
   return (
     <section className='container'>
-      <h2 className='text-red-600 my-6'>
-        Specific Genre system still not available
-      </h2>
+      <h2 className='my-6'>Genre: {genre}</h2>
 
-      <main className='grid gap-2 grid-cols-1 md:grid-cols-6'>
-        {recentlyUpdate
-          .filter((item) => item.name.toLowerCase().includes(query))
-          .map((e) => (
-            <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
-              <div
-                onTouchStart={() => setAnime(e)}
-                onMouseOver={() => setAnime(e)}
-              >
-                <AnimeCard
-                  key={e.id}
-                  name={e.name}
-                  image={e.image}
-                  type={e.type}
-                  numOfEpisode={e.numberOfEpisode}
-                />
-              </div>
-            </Link>
-          ))}
-      </main>
+      <ul className='flex flex-wrap gap-x-3 gap-y-1 mb-6 text-gray-400 text-sm'>
+        {genres?.map((name) => (
+          <li
+            key={name}
+            onClick={() => setGenre(name)}
+            className={`cursor-pointer hover:text-white ${
+              name === genre ? 'text-purple-500 font-semibold' : ''
+            }`}
+          >
+            {name}
+          </li>
+        ))}
+      </ul>
+
+      <AnimeGrid
+        items={anime}
+        loading={loading}
+        error={error}
+        empty='No anime found in this genre.'
+      />
     </section>
   );
 };

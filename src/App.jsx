@@ -13,6 +13,7 @@ import NewestPage from "./pages/NewestPage";
 import AddedPage from "./pages/AddedPage";
 import UpdatedPage from "./pages/UpdatedPage";
 import GenrePage from "./pages/GenrePage";
+import SearchPage from "./pages/SearchPage";
 import TypePage from "./pages/TypePage";
 
 const App = () => {
@@ -23,8 +24,8 @@ const App = () => {
         <AnimeProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/watch" element={<WatchAnime />} />
-            <Route path="/watch/:name" element={<WatchAnime />} />
+            <Route path="/watch/:id" element={<WatchAnime />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/watch2gather" element={<Watch2gather />} />
             <Route path="/donate" element={<DonatePage />} />

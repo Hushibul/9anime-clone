@@ -5,13 +5,14 @@ import { HiArrowNarrowRight, HiSearch } from 'react-icons/hi';
 import { ImCross } from 'react-icons/im';
 import { RiHeartAddFill } from 'react-icons/ri';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logos/logo.png';
 import { LoginContext } from '../../contexts/LoginContext';
 import Modal from '../popper/Modal';
 import RequestModal from '../popper/RequestModal';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const { showModal, setShowModal } = useContext(LoginContext);
   const { showRequestModal, setShowRequestModal } = useContext(LoginContext);
@@ -40,16 +41,25 @@ const Navbar = () => {
             </Link>
           </div>
           {/* searchbar  */}
-          <div className='hidden lg:flex items-center bg-primary-color rounded-lg px-2'>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate('/search');
+            }}
+            className='hidden lg:flex items-center bg-primary-color rounded-lg px-2'
+          >
             <HiSearch className=' text-gray-300 text-2xl hover:text-white' />
             <input
               type='text'
-              className='text-gray-400 max-w-full bg-primary-color px-2 py-2 placeholder:text-gray-600 placeholder:text-xs'
+              className='text-gray-400 max-w-full bg-primary-color px-2 py-2 placeholder:text-gray-600 placeholder:text-xs focus:outline-none'
               placeholder='Search anime...'
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                navigate('/search');
+              }}
             />
-          </div>
+          </form>
 
           {/* sub-list  */}
           <div name='heading' className='hidden md:flex'>

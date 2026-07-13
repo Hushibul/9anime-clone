@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const ScheduleHeading = () => {
-  // const weekArray = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+const ScheduleHeading = ({ dayIndex, setDayIndex, days = [] }) => {
   const [time, setTime] = useState('');
 
   const checkTime = useCallback((i) => {
@@ -34,16 +33,22 @@ const ScheduleHeading = () => {
           new Date().getMonth() + 1
         }/${new Date().getFullYear()} ${time}`}
       </h6>
-      {/* <div className='flex items-center justify-between w-full px-4'>
-        {weekArray.map((item, index) => (
-          <h1
-            key={index}
-            className='text-5xl pb-5 text-gray-600 hover:text-gray-500 hover:border-b-2 hover:border-gray-500'
+
+      <div className='flex items-center justify-between w-full px-4 flex-wrap'>
+        {days.map((item, index) => (
+          <button
+            key={item}
+            onClick={() => setDayIndex(index)}
+            className={`text-2xl md:text-4xl pb-5 bg-transparent uppercase ${
+              index === dayIndex
+                ? 'text-gray-200 border-b-2 border-purple-600'
+                : 'text-gray-600 hover:text-gray-500 hover:border-b-2 hover:border-gray-500'
+            }`}
           >
-            {item}
-          </h1>
+            {item.slice(0, 3)}
+          </button>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };

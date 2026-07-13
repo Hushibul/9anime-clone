@@ -1,49 +1,18 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import AnimeCard from '../components/cards/AnimeCard';
+import React, { useContext } from 'react';
+import AnimeGrid from '../components/containers/AnimeGrid';
 import { AnimeContext } from '../contexts/AnimeContext';
-import { LoginContext } from '../contexts/LoginContext';
 
 const UpdatedPage = () => {
-  const [anime, setAnime] = useState([]);
-
-  const { animeData, loading } = useContext(AnimeContext);
-  const { query } = useContext(LoginContext);
-
-  if (loading) {
-    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
-  }
-
-  if (!animeData || !animeData.newRelease || animeData.newRelease.length === 0) {
-    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No anime available.</h5>;
-  }
-
-  const { newRelease } = animeData;
+  const { animeData, loading, error } = useContext(AnimeContext);
 
   return (
     <section className='container'>
-      <h2 className='mt-4'>Newest</h2>
-
-      <main className='grid gap-2 grid-cols-1 md:grid-cols-6'>
-        {newRelease
-          .filter((item) => item.name.toLowerCase().includes(query))
-          .map((e) => (
-            <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
-              <div
-                onTouchStart={() => setAnime(e)}
-                onMouseOver={() => setAnime(e)}
-              >
-                <AnimeCard
-                  key={e.id}
-                  name={e.name}
-                  image={e.image}
-                  type={e.type}
-                  numOfEpisode={e.numberOfEpisode}
-                />
-              </div>
-            </Link>
-          ))}
-      </main>
+      <h2 className='my-6'>Recently Updated</h2>
+      <AnimeGrid
+        items={animeData?.recentlyUpdate}
+        loading={loading}
+        error={error}
+      />
     </section>
   );
 };

@@ -11,7 +11,6 @@ const MainGrid = () => {
   const { animeData, loading } = useContext(AnimeContext);
   const { query } = useContext(LoginContext);
 
-  const [anime, setAnime] = useState([]);
   const [animeArray, setAnimeArray] = useState([]);
 
   useEffect(() => {
@@ -95,21 +94,17 @@ const MainGrid = () => {
           className='grid grid-cols-3 gap-3 md:grid-cols-5 xl:grid-cols-6'
         >
           {animeArray
-            .filter((item) => item.name.toLowerCase().includes(query))
+            .filter((item) =>
+              item.name.toLowerCase().includes(query.toLowerCase())
+            )
             .map((e) => (
-              <Link key={e.id} to={`/watch/${e.id}`} state={{ anime }}>
-                <div
-                  onTouchStart={() => setAnime(e)}
-                  onMouseOver={() => setAnime(e)}
-                >
-                  <AnimeCard
-                    key={e.id}
-                    name={e.name}
-                    image={e.image}
-                    type={e.type}
-                    numOfEpisode={e.numberOfEpisode}
-                  />
-                </div>
+              <Link key={e.id} to={`/watch/${e.id}`}>
+                <AnimeCard
+                  name={e.name}
+                  image={e.image}
+                  type={e.type}
+                  numOfEpisode={e.numberOfEpisode}
+                />
               </Link>
             ))}
         </div>

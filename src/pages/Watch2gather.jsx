@@ -1,24 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import LiveCard from '../components/cards/LiveCard';
 import { AnimeContext } from '../contexts/AnimeContext';
-import { LoginContext } from '../contexts/LoginContext';
 
 const Watch2gather = () => {
-  const [anime, setAnime] = useState([]);
-
-  const { animeData, loading } = useContext(AnimeContext);
-  const { query } = useContext(LoginContext);
+  const { animeData, loading, error } = useContext(AnimeContext);
 
   if (loading) {
-    return <h5 className='text-white font-semibold text-2xl text-center my-4'>Loading...</h5>;
+    return (
+      <h5 className='text-white font-semibold text-2xl text-center my-4'>
+        Loading...
+      </h5>
+    );
   }
 
-  if (!animeData || !animeData.recentlyUpdate || animeData.recentlyUpdate.length === 0) {
-    return <h5 className='text-white font-semibold text-2xl text-center my-4'>No anime available.</h5>;
+  if (error || !animeData?.day?.length) {
+    return (
+      <h5 className='text-white font-semibold text-2xl text-center my-4'>
+        No rooms available right now.
+      </h5>
+    );
   }
 
-  const { recentlyUpdate } = animeData;
+  // Watch2gather rooms aren't a real thing in the API — this browses the
+  // currently-airing titles you could open a room for.
+  const rooms = animeData.day;
 
   return (
     <section className='container'>
@@ -27,38 +33,27 @@ const Watch2gather = () => {
           <p className='text-gray-600'>Home</p>
         </Link>
         <p className='text-gray-600'>/</p>
-        <Link to='watch2gather'>
+        <Link to='/watch2gather'>
           <p>Watch2Gather</p>
         </Link>
       </div>
       <h2 className='mt-2'>Browse</h2>
 
       <main className='grid gap-2 grid-cols-1 md:grid-cols-4 mt-4'>
-        {recentlyUpdate
-          .filter((item) => item.name.toLowerCase().includes(query))
-          .map((e) => (
-            <Link key={e.id} to={`/watch/${e.name}`} state={{ anime }}>
-              <div
-                onTouchStart={() => setAnime(e)}
-                onMouseOver={() => setAnime(e)}
-              >
-                <LiveCard
-                  key={e.id}
-                  name={e.name}
-                  image={e.image}
-                  viewStatus={e.viewStatus}
-                  episodeNo={e.episodeNo}
-                  viewing={e.viewing}
-                />
-              </div>
-            </Link>
-          ))}
-
-        {/* <LiveCard />
-        <LiveCard />
-        <LiveCard />
-        <LiveCard />
-        <LiveCard /> */}
+        {rooms.map((anime) => (
+          <Link key={anime.id} to={`/watch/${anime.id}`}>
+            <LiveCard
+              name={anime.name}
+              image={anime.image}
+              viewStatus={
+                anime.status === 'Currently Airing' ? 'WATCHING' : 'WAITING'
+              }
+              episodeNo={anime.numberOfEpisode}
+              duration={anime.duration}
+              viewing={anime.views?.toLocaleString()}
+            />
+          </Link>
+        ))}
       </main>
     </section>
   );

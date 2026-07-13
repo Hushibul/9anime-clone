@@ -6,7 +6,6 @@ import RankAnimeCard from './RankAnimeCard';
 const Sidebar = () => {
   const { animeData, loading } = useContext(AnimeContext);
   const [data, setData] = useState([]);
-  const [anime, setAnime] = useState([]);
 
   useEffect(() => {
     if (animeData && animeData.day) {
@@ -69,19 +68,21 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {data.length > 0 ? data.map((e, index) => (
-        <Link key={e.id} to={`/watch/${e.id}`} state={{ anime }}>
-          <div onTouchStart={() => setAnime(e)} onMouseOver={() => setAnime(e)}>
+      {data.length > 0 ? (
+        data.map((e, index) => (
+          <Link key={e.id} to={`/watch/${e.id}`}>
             <RankAnimeCard
               name={e.name}
               id={index + 1}
               image={e.image}
-              views={e.views}
+              views={e.views?.toLocaleString()}
               numOfEpisode={e.numberOfEpisode}
             />
-          </div>
-        </Link>
-      )) : <p>No anime in this category</p>}
+          </Link>
+        ))
+      ) : (
+        <p>No anime in this category</p>
+      )}
     </main>
   );
 };
